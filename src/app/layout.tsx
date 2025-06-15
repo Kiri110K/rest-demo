@@ -1,5 +1,7 @@
 import "~/styles/globals.css";
 import { TRPCReactProvider } from "~/trpc/react";
+import { CartProvider } from "../components/CartContext";
+import CartSidebar from "../components/CartSidebar";
 
 export default function RootLayout({
   children,
@@ -7,7 +9,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <CartProvider>
+          <CartSidebar />
+          <TRPCReactProvider>{children}</TRPCReactProvider>
+        </CartProvider>
       </body>
     </html>
   );

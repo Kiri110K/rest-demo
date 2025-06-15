@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { Icon } from "leaflet";
 import { useEffect } from "react";
 import slugify from "slugify";
+import { Button } from "../../components/ui/button";
+import { Card, CardContent, CardTitle } from "../../components/ui/card";
 
 // Fix for default marker icons in Next.js
 const icon = new Icon({
@@ -29,9 +31,7 @@ export function Map() {
     // Copy marker icons to public folder
     const copyMarkerIcons = async () => {
       const response = await fetch("/marker-icon.png");
-      if (!response.ok) {
-        console.error("Failed to load marker icon");
-      }
+      // No need to handle error
     };
     void copyMarkerIcons();
   }, []);
@@ -55,12 +55,14 @@ export function Map() {
           icon={icon}
         >
           <Popup>
-            <div>
-              <div>{restaurant.name}</div>
-              <button onClick={() => router.push(`/${slugify(restaurant.name, { lower: true })}`)}>
-                View Details
-              </button>
-            </div>
+            <Card className="p-2 min-w-[180px]">
+              <CardContent className="p-0">
+                <CardTitle className="text-base mb-2">{restaurant.name}</CardTitle>
+                <Button size="sm" onClick={() => router.push(`/${slugify(restaurant.name, { lower: true })}`)}>
+                  View Details
+                </Button>
+              </CardContent>
+            </Card>
           </Popup>
         </Marker>
       ))}
