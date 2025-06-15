@@ -43,13 +43,3 @@ export const menuItems = sqliteTable("menu_items", {
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
-
-// Keep the posts table for now
-export const posts = sqliteTable("post", {
-  id: integer("id").primaryKey(),
-  name: text("name", { length: 256 }),
-  createdAt: integer("created_at", { mode: "timestamp" })
-    .default(sql`(unixepoch())`)
-    .notNull(),
-  updatedAt: integer("updated_at", { mode: "timestamp" }),
-});

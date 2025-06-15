@@ -3,10 +3,10 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { api } from "~/trpc/react";
-import type { RouterOutputs } from "~/trpc/react";
 import { useRouter } from "next/navigation";
 import { Icon } from "leaflet";
 import { useEffect } from "react";
+import slugify from "slugify";
 
 // Fix for default marker icons in Next.js
 const icon = new Icon({
@@ -40,12 +40,12 @@ export function Map() {
 
   return (
     <MapContainer
-      center={[51.505, -0.09]} // Default center, you might want to adjust this
+      center={[51.505, -0.09]}
       zoom={13}
-      style={{ height: "100vh", width: "100%" }}
+      style={{ height: "100vh", width: "100vw" }}
     >
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution=""
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {restaurants.map((restaurant) => (
@@ -56,12 +56,9 @@ export function Map() {
         >
           <Popup>
             <div>
-              <h3 className="text-lg font-bold">{restaurant.name}</h3>
-              <button
-                onClick={() => router.push(`/restaurants/${restaurant.id}`)}
-                className="mt-2 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-              >
-                View Menu
+              <div>{restaurant.name}</div>
+              <button onClick={() => router.push(`/${slugify(restaurant.name, { lower: true })}`)}>
+                View Details
               </button>
             </div>
           </Popup>
