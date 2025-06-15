@@ -21,10 +21,10 @@ pnpm run dev
 
 # Project Status
 
-✅ Database schema for users, restaurants, and menu items
-✅ Dynamic map with clickable restaurant markers
-✅ Individual restaurant pages with live menus from the database
-✅ Fully functional client-side cart with add/remove/clear actions
+    - ✅ Database schema for users, restaurants, and menu items  
+    - ✅ Dynamic map with clickable restaurant markers  
+    - ✅ Individual restaurant pages with live menus from the database  
+    - ✅ Fully functional client-side cart with add/remove/clear actions  
 
 ## Up Next
 
