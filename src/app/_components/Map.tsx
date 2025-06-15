@@ -19,7 +19,7 @@ const icon = new Icon({
   shadowSize: [41, 41],
 });
 
-type Restaurant = RouterOutputs["restaurants"]["getAll"][number];
+// type Restaurant = RouterOutputs["restaurants"]["getAll"][number];
 
 export function Map() {
   const router = useRouter();
